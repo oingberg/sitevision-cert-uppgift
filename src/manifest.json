@@ -1,0 +1,12 @@
+{
+   "id": "Annonsering",
+   "version": "0.0.1",
+   "name": "Annonsering-webapp",
+   "author": "Oskar Ingberg",
+   "description": "En annonsering webapp",
+   "helpUrl": "",
+   "type": "WebApp",
+   "storage": {
+      "collectionDataStore": "advertsStore"
+   }
+}

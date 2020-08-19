@@ -1,0 +1,33 @@
+<div
+    id="remove-modal"
+    class="env-modal-dialog"
+    role="dialog"
+    aria-labelledby="myDialog"
+    aria-hidden="true"
+    tabindex="-1"
+>
+<div class="env-modal-dialog__dialog env-modal-dialog__dialog--small">
+    <section class="env-modal-dialog__content">
+        <div class="env-modal-dialog__header">
+            <h6 class="env-text env-modal-dialog__header__title">
+                Ta bort annons
+            </h6>
+        </div>
+        <div class="env-modal-dialog__body">
+            <p class="env-text">
+                Är du säker på att du vill ta bort annonsen?
+            </p>
+        </div>
+        <div class="env-modal-dialog__footer">
+            <form method="post" action="<%= getUrl('/removeAdvert', { dsid: advertDsid }) %>">
+                <input class="env-button env-button--danger" type="submit" value="Ta bort" />
+            </form>
+            <button
+                data-modal-dialog-dismiss
+                class="env-button env-button--link">
+                    Avbryt
+            </button>
+        </div>
+    </section>
+</div>
+</div>

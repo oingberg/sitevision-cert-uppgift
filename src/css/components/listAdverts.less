@@ -1,0 +1,29 @@
+.ws-advertising__list {
+    ul {
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        li {
+            list-style-type: none;
+
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+
+    &__item {
+        width: 100%;
+        margin-bottom: 32px;
+    }
+}
+
+@media (min-width: @breakpoint-mobile) {
+    .ws-advertising__list {
+        &__item {
+            width: 320px;
+        }
+    }
+}

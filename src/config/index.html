@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+   <div class="panel-heading">
+      <h3 class="panel-title"><%- appName %></h3>
+   </div>
+
+   <div class="panel-body">
+      <div class="form-group">
+         <label>Annonsplatsansvarig</label>
+         <input class="form-control" type="email" value="<%- currentUserEmail %>" required>
+      </div>
+      <div class="form-group">
+         <label>Max antal av annonser för användare</label>
+         <input class="form-control" data-component="number-spinner" data-min="0" data-max="10" data-step="1" name="maxAmountOfAdverts" required>
+      </div>
+      <div class="form-group">
+         <label>Visa standard bild om användare inte väljer bild för annons?</label>
+         <input type="checkbox" data-enables=".standard" name="showStandardImage"><br/>
+         
+         <div class="standard">
+            <label>Bild som ska användas</label>
+            <input class="form-control" data-component="image-selector" name="standardImage">
+         </div>
+      </div>
+   </div>
+</div>

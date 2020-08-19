@@ -1,0 +1,10 @@
+<div class="ws-advertising__advert">
+    <% if (advert.imageSrc) { %>
+        <img src="<%- advert.imageSrc %>" />
+    <% } else if (standardImage) { %>
+        <img alt="<%- standardImage.alt %>" src="<%- standardImage.src %>" />
+    <% } %>
+    <h4><%- advert.title %></h4>
+    <p><%- advert.description %></p>
+    <a href="<%= getUrl('/') %>">< Tillbaka</a>
+</div>

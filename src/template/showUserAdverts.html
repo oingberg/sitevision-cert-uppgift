@@ -1,0 +1,40 @@
+<div class="ws-advertising__list">
+    <ul>
+        <% if (adverts.length > 0) { %>
+            <% for (var i = 0; i < adverts.length; i++) { %>
+                <li>
+                    <div class="env-embedded ws-advertising__list__item">
+                        <div class="env-embedded__img-container">
+                            <% if (adverts[i].imageSrc) { %>
+                                <img
+                                    class="env-embedded__img"
+                                    src="<%- adverts[i].imageSrc %>"
+                                />
+                            <% } else if (standardImage) { %>
+                                <img
+                                    class="env-embedded__img"
+                                    alt="<%- standardImage.alt %>"
+                                    src="<%- standardImage.src %>"
+                                />
+                            <% } %>
+                        </div>
+                        <div class="env-embedded__block">
+                            <h4 class="env-text"><%- adverts[i].title %></h4>
+                            <p class="env-text env-text--muted env-embedded__text">
+                                <%- adverts[i].shortDescription %>
+                            </p>
+                            <a href="<%= getUrl('/editAdvert', { advert: adverts[i] }) %>">
+                                <button class="env-button env-button--primary">Ändra annons</button>
+                            </a>
+                            <button data-remove-advert class="env-button env-button--danger" value="<%- adverts[i].dsid %>">
+                                    Ta bort annons
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            <% } %>
+        <% } else { %>
+            <h5>Du har inga annonser. Lägg till en med knappen "Lägg till annons"</h5>
+        <% } %>
+    </ul>
+</div>
