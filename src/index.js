@@ -6,6 +6,8 @@
    const resourceLocatorUtil = require('ResourceLocatorUtil');
    const propertyUtil = require('PropertyUtil');
    const portletContextUtil = require('PortletContextUtil');
+   const imageUtil = require('ImageUtil');
+   const logUtil = require('LogUtil');
    
    const dataStoreProvider = require('/module/server/dataStoreProvider');
 
@@ -23,6 +25,8 @@
 
    const user = portletContextUtil.getCurrentUser();
    const userId = propertyUtil.getString(user, 'jcr:uuid');
+
+   const getImageFolderNode = resourceLocatorUtil.getNodeByIdentifier(appData.get('imageFolder'));
 
    router.get('/', (req, res) => {
       const renderObj = {
@@ -63,13 +67,55 @@
          title: req.params.title,
          shortDescription: req.params.shortDescription,
          description: req.params.description,
-         imageSrc: req.params.img,
+         imageSrc: null,
          username: propertyUtil.getString(user, 'name'),
          phonenumber: propertyUtil.getString(user, 'mobil').length > 0 ? propertyUtil.getString(user, 'mobil') : propertyUtil.getString(user, 'telephoneNumber'),
          email: propertyUtil.getString(user, 'mail')
       };
 
-      dataStoreProvider.addAdvert(advert);
+      const addAdvert = dataStoreProvider.addAdvert(advert);
+
+      logUtil.error(JSON.stringify(addAdvert))
+
+      imageUtil.createImage(getImageFolderNode, addAdvert.dsid, req.params.img);
+
+      const imgExtenstion = req.params.img.substr(str.indexOf('.'));
+
+      dataStoreProvider.editAdvert(advert.dsid, { imageSrc: addAdvert.dsid + imgExtenstion });
+
+      const renderObj = {
+         adverts: dataStoreProvider.searchAdverts(userId),
+         standardImage: standardImageObj
+      };
+
+      res.redirect('/userAdverts', renderObj);
+   });
+
+   router.get('/editAdvert', (req, res) => {
+      const renderObj = {
+         advert: {
+            dsid: req.params.dsid,
+            title: req.params.title,
+            shortDescription: req.params.shortDescription,
+            description: req.params.description,
+         }
+      };
+
+      res.render('/editAdvert', renderObj);
+   });
+
+   router.post('/editAdvert', (req, res) => {
+      let advert = {
+         title: req.params.title,
+         shortDescription: req.params.shortDescription,
+         description: req.params.description,
+      }
+
+      if (req.params.img.length > 0) {
+         advert = { ...advert, imageSrc: req.params.img }
+      }
+
+      dataStoreProvider.editAdvert(req.params.dsid, advert);
 
       const renderObj = {
          adverts: dataStoreProvider.searchAdverts(userId),
@@ -77,17 +123,6 @@
       };
 
       res.render('/userAdverts', renderObj);
-   });
-
-   router.get('/editAdvert', (req, res) => {
-      const advert = {
-         title: req.params.title,
-         shortDescription: req.params.shortDescription,
-         description: req.params.description,
-         imageSrc: req.params.img,
-      };
-
-      res.render('/editAdvert', advert);
    });
 
    router.post('/removeAdvert', (req, res) => {

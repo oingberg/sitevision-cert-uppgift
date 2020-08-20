@@ -1,0 +1,35 @@
+<form class="env-form" method="post" action="<%= getUrl('/editAdvert', { dsid: advert.dsid }) %>">
+    <h5>Ändra annonsen:</h5>
+    <div class="env-form-element">
+        <label for="file-upload" class="env-form-element__label">Välj ny bild. Lämna orörd om du inte vill byta bild.</label>
+        <div class="env-form-element__control">
+           <input type="file" id="img" name="img" accept="image/png, image/jpeg" />
+        </div>
+     </div>
+    <div class="env-form-element">
+       <label for="first-name" class="env-form-element__label">Rubrik</label>
+       <div class="env-form-element__control">
+          <input type="text" class="env-form-input" id="title" name="title" value="<%- advert.title %>" required />
+       </div>
+    </div>
+    <div class="env-form-element">
+       <label for="last-name" class="env-form-element__label">Kort beskriving, används för att snabbt beskriva annons i annonslistningen</label>
+       <div class="env-form-element__control">
+          <input type="text" class="env-form-input" id="short-description" name="shortDescription" value="<%- advert.shortDescription %>" required />
+       </div>
+    </div>
+    <div class="env-form-element">
+        <label for="textarea" class="env-form-element__label">Beskriving</label>
+        <div class="env-form-element__control">
+           <textarea class="env-form-input" id="description" name="description" rows="3" required><%- advert.description %></textarea>
+        </div>
+     </div>
+    <div class="env-form-element">
+       <button type="submit" class="env-button env-button--primary">
+          Ändra
+       </button>
+       <a href="<%= getUrl('/userAdverts') %>" class="env-button">
+            Avbryt
+       </a>
+    </div>
+</form>
