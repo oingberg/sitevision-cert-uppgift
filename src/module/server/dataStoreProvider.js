@@ -44,10 +44,9 @@ define(function(require) {
 
        addAdvert: function(advert) {
             try {
-                var updatedAdvert = dataStore.add(advert);
+                var addAdvert = dataStore.add(advert);
 
-                dataStore.instantIndex(updatedAdvert.dsid);
-                return updatedAdvert;
+                dataStore.instantIndex(addAdvert.dsid);
             } catch (e) {
                 this.logError(e);
             }

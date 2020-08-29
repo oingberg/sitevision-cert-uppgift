@@ -39,6 +39,7 @@ define(function(require) {
 
         filterState: function(state) {
             return _.extend({}, {
+                maxAmountOfAdverts: state.maxAmountOfAdverts,
                 adverts: state.adverts,
                 standardImage: state.standardImage
             });

@@ -24,6 +24,8 @@
    const user = portletContextUtil.getCurrentUser();
    const userId = propertyUtil.getString(user, 'jcr:uuid');
 
+   const maxAmountOfAdverts = appData.get('maxAmountOfAdverts');
+
    router.get('/', (req, res) => {
       const renderObj = {
          user: { id: userId },
@@ -46,6 +48,7 @@
    router.get('/userAdverts', (req, res) => {
       const renderObj = {
          user: { id: userId },
+         maxAmountOfAdverts,
          adverts: dataStoreProvider.searchAdverts(userId),
          standardImage: standardImageObj
       };
@@ -54,23 +57,31 @@
    });
 
    router.get('/addAdvert', (req, res) => {
-      res.render('/addAdvert');
+      const adverts = dataStoreProvider.searchAdverts(userId);
+
+      const renderObj = {
+         user: { id: userId },
+         maxAmountOfAdverts,
+         amountOfAdverts: adverts.length
+      }
+
+      res.render('/addAdvert', renderObj);
    });
 
-   router.post('/addAdvert', (req, res) => {
+   router.post('/addAdvertForm', (req, res) => {
       const advert = {
          userId,
          title: req.params.title,
          shortDescription: req.params.shortDescription,
          description: req.params.description,
          username: propertyUtil.getString(user, 'name'),
-         phonenumber: propertyUtil.getString(user, 'mobil').length > 0 ? propertyUtil.getString(user, 'mobil') : propertyUtil.getString(user, 'telephoneNumber'),
+         phonenumber: propertyUtil.getString(user, 'mobil') && propertyUtil.getString(user, 'mobil').length > 0 ? propertyUtil.getString(user, 'mobil') : propertyUtil.getString(user, 'telephoneNumber'),
          email: propertyUtil.getString(user, 'mail')
       };
 
       dataStoreProvider.addAdvert(advert);
 
-      res.redirect('/');
+      res.render('/addAdvertSuccess');
    });
 
    router.get('/editAdvert', (req, res) => {
@@ -93,18 +104,9 @@
          description: req.params.description,
       }
 
-      if (req.params.img.length > 0) {
-         advert = { ...advert, imageSrc: req.params.img }
-      }
-
       dataStoreProvider.editAdvert(req.params.dsid, advert);
 
-      const renderObj = {
-         adverts: dataStoreProvider.searchAdverts(userId),
-         standardImage: standardImageObj
-      };
-
-      res.render('/userAdverts', renderObj);
+      res.render('/editAdvertSuccess');
    });
 
    router.post('/removeAdvert', (req, res) => {
@@ -113,6 +115,8 @@
       dataStoreProvider.removeAdvert(dsid);
 
       const renderObj = {
+         user: { id: userId },
+         maxAmountOfAdverts,
          adverts: dataStoreProvider.searchAdverts(userId),
          standardImage: standardImageObj
       };

@@ -3,7 +3,6 @@ define(function(require) {
     
     var
     _           = require('underscore'),
-    $           = require('jquery'),
     Component   = require('Component'),
     template    = require('/template/addAdvertForm');
  
@@ -12,7 +11,11 @@ define(function(require) {
         template: template,
 
         filterState: function(state) {
-            return _.extend({}, {});
+            return _.extend({}, {
+                user: state.user,
+                maxAmountOfAdverts: state.maxAmountOfAdverts,
+                amountOfAdverts: state.amountOfAdverts
+            });
         }
     });
  });

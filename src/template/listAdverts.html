@@ -1,4 +1,7 @@
 <div class="ws-advertising__list">
+    <% if (user.id !== 'anonymous') { %>
+        <a href="<%= getUrl('/userAdverts') %>" class="env-button">Se dina annonser</a>
+    <% } %>
     <% if (adverts.length > 0) { %>
         <ul>
             <% for (var i = 0; i < adverts.length; i++) { %>
@@ -33,8 +36,5 @@
     <% } else { %>
         <h4>Det finns inga annonser, bli den första som lägger upp en annons!</h4>
         <p>Lägg till en annons genom att vara inloggad och sedan klicka på "Se dina annonser" för att sedan klicka på "Lägg till annons"</p>
-    <% } %>
-    <% if (user.id !== 'anonymous') { %>
-        <a href="<%= getUrl('/userAdverts') %>" class="env-button">Se dina annonser</a>
     <% } %>
 </div>

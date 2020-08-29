@@ -1,35 +1,40 @@
-<form id="add-advert-form" class="env-form" enctype="multipart/form-data" method="post" action="<%= getStandaloneUrl('/addAdvert') %>">
-    <h5>Skapa ny annons:</h5>
-    <!-- <div class="env-form-element">
-        <label for="file-upload" class="env-form-element__label">Bild som ska visas med annons</label>
-        <div class="env-form-element__control">
-           <input type="file" id="img" name="img" accept="image/jpeg" />
-        </div>
-     </div> -->
-    <div class="env-form-element">
-       <label for="first-name" class="env-form-element__label">Rubrik</label>
-       <div class="env-form-element__control">
-          <input type="text" class="env-form-input" id="title" name="title" required />
-       </div>
-    </div>
-    <div class="env-form-element">
-       <label for="last-name" class="env-form-element__label">Kort beskriving, används för att snabbt beskriva annons i annonslistningen</label>
-       <div class="env-form-element__control">
-          <input type="text" class="env-form-input" id="short-description" name="shortDescription" required />
-       </div>
-    </div>
-    <div class="env-form-element">
-        <label for="textarea" class="env-form-element__label">Beskriving</label>
-        <div class="env-form-element__control">
-           <textarea class="env-form-input" id="description" name="description" rows="3" required></textarea>
-        </div>
-     </div>
-    <div class="env-form-element">
-       <button type="submit" class="env-button env-button--primary">
-          Lägg till
-       </button>
-       <a href="<%= getUrl('/userAdverts')  %>" class="env-button">
-            Avbryt
-       </a>
-    </div>
-</form>
+<% if (user.id === 'anonymous') { %>
+   <h4>Du måste vara inloggad för att kunna lägga till en annons</h4>
+<% } else { %>
+   <% if (amountOfAdverts > maxAmountOfAdverts) { %>
+      <h4>Du har redan lagt till max antal annonser, ta bort en för att kunna lägga till en ny</h4>
+      <a href="<%= getUrl('/userAdverts')  %>" class="env-button">
+         Tillbaka
+      </a>
+   <% } else { %>
+      <form id="add-advert-form" class="env-form" method="post" action="<%= getUrl('/addAdvertForm') %>">
+         <h5>Skapa ny annons:</h5>
+         <div class="env-form-element">
+            <label for="first-name" class="env-form-element__label">Rubrik</label>
+            <div class="env-form-element__control">
+               <input type="text" class="env-form-input" id="title" name="title" required />
+            </div>
+         </div>
+         <div class="env-form-element">
+            <label for="last-name" class="env-form-element__label">Kort beskriving, används för att snabbt beskriva annons i annonslistningen</label>
+            <div class="env-form-element__control">
+               <input type="text" class="env-form-input" id="short-description" name="shortDescription" required />
+            </div>
+         </div>
+         <div class="env-form-element">
+            <label for="textarea" class="env-form-element__label">Beskriving</label>
+            <div class="env-form-element__control">
+               <textarea class="env-form-input" id="description" name="description" rows="3" required></textarea>
+            </div>
+         </div>
+         <div class="env-form-element">
+            <button type="submit" class="env-button env-button--primary">
+               Lägg till
+            </button>
+            <a href="<%= getUrl('/userAdverts')  %>" class="env-button">
+                  Avbryt
+            </a>
+         </div>
+      </form>
+   <% } %>
+<% } %>
