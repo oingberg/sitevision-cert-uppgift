@@ -37,6 +37,10 @@ define(function(require) {
             this.addRemoveModal();
         },
 
+        onDestroy: function() {
+            $('#remove-modal').remove();
+        },
+
         filterState: function(state) {
             return _.extend({}, {
                 maxAmountOfAdverts: state.maxAmountOfAdverts,

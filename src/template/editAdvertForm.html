@@ -22,6 +22,12 @@
          </div>
       </div>
       <div class="env-form-element">
+         <label for="price" class="env-form-element__label"><%- i18n('price') %></label>
+         <div class="env-form-element__control">
+            <input type="number" class="env-form-input" id="price" name="price" value="<%- advert.price %>" />
+         </div>
+      </div>
+      <div class="env-form-element">
          <button type="submit" class="env-button env-button--primary">
             <%- i18n('update') %>
          </button>

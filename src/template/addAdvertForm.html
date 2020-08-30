@@ -7,7 +7,7 @@
          <%- i18n('back') %>
       </a>
    <% } else { %>
-      <form id="add-advert-form" class="env-form" method="post" action="<%= getUrl('/addAdvertForm') %>">
+      <form id="add-advert-form" class="env-form" method="post" action="<%= getUrl('/addAdvert') %>">
          <h5><%- i18n('addNewAdvert') %>:</h5>
          <div class="env-form-element">
             <label for="first-name" class="env-form-element__label"><%- i18n('title') %></label>
@@ -25,6 +25,12 @@
             <label for="textarea" class="env-form-element__label"><%- i18n('description') %></label>
             <div class="env-form-element__control">
                <textarea class="env-form-input" id="description" name="description" rows="3" required></textarea>
+            </div>
+         </div>
+         <div class="env-form-element">
+            <label for="price"><%- i18n('price') %> (<%- i18n('SEK') %>)</label>
+            <div class="env-form-element__control">
+               <input type="number" class="env-form-input" id="price" name="price" required />
             </div>
          </div>
          <div class="env-form-element">

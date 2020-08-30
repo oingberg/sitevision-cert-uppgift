@@ -1,0 +1,34 @@
+<div
+    id="report-modal"
+    class="env-modal-dialog"
+    role="dialog"
+    aria-labelledby="myDialog"
+    aria-hidden="true"
+    tabindex="-1"
+>
+    <div class="env-modal-dialog__dialog env-modal-dialog__dialog--large">
+        <section class="env-modal-dialog__content">
+            <div class="env-modal-dialog__header">
+                <h6 class="env-text env-modal-dialog__header__title">
+                    <%- i18n('reportAdvert') %>
+                </h6>
+            </div>
+            <form method="post" action="<%= getUrl('/reportAdvert', { dsid: advertDsid }) %>">
+                <div class="env-modal-dialog__body">
+                    <p class="env-text">
+                        <%- i18n('reportAdvertText') %>
+                    </p>
+                    <textarea class="env-form-input" id="description" name="description" rows="6" required></textarea>
+                </div>
+                <div class="env-modal-dialog__footer">
+                    <input class="env-button env-button--danger" type="submit" value="<%- i18n('reportAdvert') %>" />
+                    <button
+                        data-modal-dialog-dismiss
+                        class="env-button env-button--link">
+                            <%- i18n('cancel') %>
+                    </button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

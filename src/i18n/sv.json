@@ -27,5 +27,9 @@
    "email": "Email",
    "youHaveNoAdvertAdd": "Du har inga annonser. Lägg till en med knappen \"Lägg till annons\"",
    "addAAdvert": "Lägg till annons",
-   "yourAdverts": "Dina annonser"
+   "yourAdverts": "Dina annonser",
+   "price": "Pris",
+   "SEK": "kr",
+   "reportAdvert": "Rapportera annons",
+   "reportAdvertText": "Beskriv vad det var som fick dej att rapportera annonsen"
 }

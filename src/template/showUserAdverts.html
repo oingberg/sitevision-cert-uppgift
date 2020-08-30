@@ -18,7 +18,7 @@
                             <p class="env-text env-text--muted env-embedded__text">
                                 <%- adverts[i].shortDescription %>
                             </p>
-                            <a href="<%= getUrl('/editAdvert', { dsid: adverts[i].dsid, title: adverts[i].title, shortDescription: adverts[i].shortDescription, description: adverts[i].description }) %>">
+                            <a href="<%= getUrl('/editAdvert', { dsid: adverts[i].dsid, title: adverts[i].title, shortDescription: adverts[i].shortDescription, description: adverts[i].description, price: adverts[i].price }) %>">
                                 <button class="env-button env-button--primary"><%- i18n('editAdvert') %></button>
                             </a>
                             <button data-remove-advert class="env-button env-button--danger" value="<%- adverts[i].dsid %>">

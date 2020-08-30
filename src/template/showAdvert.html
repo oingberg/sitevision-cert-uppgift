@@ -4,6 +4,7 @@
     <% } %>
     <h2><%- advert.title %></h2>
     <p><%- advert.description %></p>
+    <p><%- i18n('price') %>: <%- advert.price %> <%- i18n('SEK') %></p>
     <% if (advert.username || advert.phonenumber || advert.email) { %>
         <h3><%- i18n('contactInfo') %>:</h3>
         <ul>
@@ -18,5 +19,9 @@
             <% } %>
         </ul>
     <% } %>
+    <% if (advert.userId !== user.id) { %>
+        <button data-report-advert class="env-button env-button--danger env-m-bottom--small" value="<%- advert.dsid %>"><%- i18n('reportAdvert') %></button>
+    <% } %>
+    <br />
     <a href="<%= getUrl('/') %>">< <%- i18n('back') %></a>
 </div>

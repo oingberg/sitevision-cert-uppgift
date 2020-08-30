@@ -38,6 +38,7 @@
 
    router.get('/advert', (req, res) => {
       const renderObj = {
+         user: { id: userId },
          advert: dataStoreProvider.getAdvert(req.params.dsid),
          standardImage: standardImageObj
       };
@@ -68,12 +69,13 @@
       res.render('/addAdvert', renderObj);
    });
 
-   router.post('/addAdvertForm', (req, res) => {
+   router.post('/addAdvert', (req, res) => {
       const advert = {
          userId,
          title: req.params.title,
          shortDescription: req.params.shortDescription,
          description: req.params.description,
+         price: req.params.price,
          username: propertyUtil.getString(user, 'name'),
          phonenumber: propertyUtil.getString(user, 'mobil') && propertyUtil.getString(user, 'mobil').length > 0 ? propertyUtil.getString(user, 'mobil') : propertyUtil.getString(user, 'telephoneNumber'),
          email: propertyUtil.getString(user, 'mail')
@@ -86,11 +88,13 @@
 
    router.get('/editAdvert', (req, res) => {
       const renderObj = {
+         user: { id: userId },
          advert: {
             dsid: req.params.dsid,
             title: req.params.title,
             shortDescription: req.params.shortDescription,
             description: req.params.description,
+            price: req.params.price
          }
       };
 
@@ -102,6 +106,7 @@
          title: req.params.title,
          shortDescription: req.params.shortDescription,
          description: req.params.description,
+         price: req.params.price
       }
 
       dataStoreProvider.editAdvert(req.params.dsid, advert);
