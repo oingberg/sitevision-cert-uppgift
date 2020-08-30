@@ -1,10 +1,22 @@
 <div class="ws-advertising__advert">
-    <% if (advert.imageSrc) { %>
-        <img src="<%- advert.imageSrc %>" />
-    <% } else if (standardImage) { %>
+    <% if (standardImage) { %>
         <img alt="<%- standardImage.alt %>" src="<%- standardImage.src %>" />
     <% } %>
-    <h4><%- advert.title %></h4>
+    <h2><%- advert.title %></h2>
     <p><%- advert.description %></p>
-    <a href="<%= getUrl('/') %>">< Tillbaka</a>
+    <% if (advert.username || advert.phonenumber || advert.email) { %>
+        <h3><%- i18n('contactInfo') %>:</h3>
+        <ul>
+            <% if (advert.username) { %>
+                <li><%- i18n('name') %>: <%- advert.username %></li>
+            <% } %>
+            <% if (advert.phonenumber) { %>
+                <li><%- i18n('phonenumber') %>: <%- advert.phonenumber %></li>
+            <% } %>
+            <% if (advert.email) { %>
+                <li><%- i18n('email') %>: <%- advert.email %></li>
+            <% } %>
+        </ul>
+    <% } %>
+    <a href="<%= getUrl('/') %>">< <%- i18n('back') %></a>
 </div>

@@ -5,12 +5,7 @@
                 <li>
                     <div class="env-embedded ws-advertising__list__item">
                         <div class="env-embedded__img-container">
-                            <% if (adverts[i].imageSrc) { %>
-                                <img
-                                    class="env-embedded__img"
-                                    src="<%- adverts[i].imageSrc %>"
-                                />
-                            <% } else if (standardImage) { %>
+                            <% if (standardImage) { %>
                                 <img
                                     class="env-embedded__img"
                                     alt="<%- standardImage.alt %>"
@@ -24,10 +19,10 @@
                                 <%- adverts[i].shortDescription %>
                             </p>
                             <a href="<%= getUrl('/editAdvert', { dsid: adverts[i].dsid, title: adverts[i].title, shortDescription: adverts[i].shortDescription, description: adverts[i].description }) %>">
-                                <button class="env-button env-button--primary">Ändra annons</button>
+                                <button class="env-button env-button--primary"><%- i18n('editAdvert') %></button>
                             </a>
                             <button data-remove-advert class="env-button env-button--danger" value="<%- adverts[i].dsid %>">
-                                    Ta bort annons
+                                    <%- i18n('removeAdvert') %>
                             </button>
                         </div>
                     </div>
@@ -35,11 +30,11 @@
             <% } %>
         </ul>
     <% } else { %>
-        <h5>Du har inga annonser. Lägg till en med knappen "Lägg till annons"</h5>
+        <h5><%- i18n('youHaveNoAdvertAdd') %></h5>
     <% } %>
     <% if (adverts.length < maxAmountOfAdverts) { %>
-        <a class="env-button ws-advertising__user__add-button" href="<%= getUrl('/addAdvert') %>">Lägg till annons</a>
+        <a class="env-button ws-advertising__user__add-button" href="<%= getUrl('/addAdvert') %>"><%- i18n('addAAdvert') %></a>
     <% } else { %>
-        <h4>Du har max antal annonser redan, ta bort en annons för att kunna lägga till en ny</h4>
+        <h4><%- i18n('youHaveAddedMaxAmount') %></h4>
     <% } %>
 </div>

@@ -1,6 +1,6 @@
 <div class="ws-advertising__list">
     <% if (user.id !== 'anonymous') { %>
-        <a href="<%= getUrl('/userAdverts') %>" class="env-button">Se dina annonser</a>
+        <a href="<%= getUrl('/userAdverts') %>" class="env-button"><%- i18n('seeYourAdverts') %></a>
     <% } %>
     <% if (adverts.length > 0) { %>
         <ul>
@@ -9,12 +9,7 @@
                     <div class="env-embedded ws-advertising__list__item">
                         <a href="<%= getUrl('/advert', { dsid: adverts[i].dsid }) %>">
                             <div class="env-embedded__img-container">
-                                <% if (adverts[i].imageSrc) { %>
-                                    <img
-                                        class="env-embedded__img"
-                                        src="<%- adverts[i].imageSrc %>"
-                                    />
-                                <% } else if (standardImage) { %>
+                                <% if (standardImage) { %>
                                     <img
                                         class="env-embedded__img"
                                         alt="<%- standardImage.alt %>"
@@ -34,7 +29,7 @@
             <% } %>
         </ul>
     <% } else { %>
-        <h4>Det finns inga annonser, bli den första som lägger upp en annons!</h4>
-        <p>Lägg till en annons genom att vara inloggad och sedan klicka på "Se dina annonser" för att sedan klicka på "Lägg till annons"</p>
+        <h4><%- i18n('thereIsNoAdvertsYet') %></h4>
+        <p><%- i18n('addAdvertByBeingLoggedIn') %></p>
     <% } %>
 </div>

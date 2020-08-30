@@ -10,22 +10,22 @@
     <section class="env-modal-dialog__content">
         <div class="env-modal-dialog__header">
             <h6 class="env-text env-modal-dialog__header__title">
-                Ta bort annons
+                <%- i18n('removeAdvert') %>
             </h6>
         </div>
         <div class="env-modal-dialog__body">
             <p class="env-text">
-                Är du säker på att du vill ta bort annonsen?
+                <%- i18n('areYouSureRemove') %>
             </p>
         </div>
         <div class="env-modal-dialog__footer">
             <form method="post" action="<%= getUrl('/removeAdvert', { dsid: advertDsid }) %>">
-                <input class="env-button env-button--danger" type="submit" value="Ta bort" />
+                <input class="env-button env-button--danger" type="submit" value="<%- i18n('remove') %>" />
             </form>
             <button
                 data-modal-dialog-dismiss
                 class="env-button env-button--link">
-                    Avbryt
+                    <%- i18n('cancel') %>
             </button>
         </div>
     </section>

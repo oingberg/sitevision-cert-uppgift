@@ -1,5 +1,5 @@
 <div class="ws-advertising__user">
-    <h4>Dina annonser:</h4>
+    <h4><%- i18n('yourAdverts') %>:</h4>
     <%= renderer.renderComponent('ShowUserAdverts') %>
-    <a href="<%= getUrl('/') %>">< Tillbaka</a>
+    <a href="<%= getUrl('/') %>">< <%- i18n('back') %></a>
 </div>
