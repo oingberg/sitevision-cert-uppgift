@@ -6,6 +6,10 @@
    const resourceLocatorUtil = require('ResourceLocatorUtil');
    const propertyUtil = require('PropertyUtil');
    const portletContextUtil = require('PortletContextUtil');
+   const mailUtil = require('MailUtil');
+   const mailBuilder = mailUtil.mailBuilder;
+
+   const logUtil = require('LogUtil');
    
    const dataStoreProvider = require('/module/server/dataStoreProvider');
 
@@ -44,6 +48,36 @@
       };
 
       res.render('/advert', renderObj);
+   });
+
+   router.post('/reportAdvert', (req, res) => {
+      const advert = dataStoreProvider.getAdvert(req.params.dsid);
+      const description = req.params.description;
+
+      const mail = mailBuilder.setSubject('Annons reporterad:')
+         .setTextMessage(`
+            Beskriving på varför annons blev rapporterad:
+            ${description}
+            Annonsinformation:
+            Annonsid: ${advert.dsid}
+            Titel: ${advert.title}
+            Kortbeskriving: ${advert.shortDescription}
+            Beskriving: ${advert.description}
+            Pris: ${advert.price}
+            Namn på annonsutgivare: ${advert.username}
+            id på annonsutgivare: ${advert.userId}
+            Telefonnummer: ${advert.phonenumber}
+            Epost: ${advert.email}
+         `)
+         .addRecipient(appData.get('email'))
+         .build();
+
+      if (mail.send()) {
+         res.render('/reportSent', { mailSentStatus: true });
+      } else {
+         logUtil.error('Could not send report mail');
+         res.render('/reportSent', { mailSentStatus: false });
+      }
    });
 
    router.get('/userAdverts', (req, res) => {

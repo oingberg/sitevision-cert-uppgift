@@ -31,5 +31,7 @@
    "price": "Pris",
    "SEK": "kr",
    "reportAdvert": "Rapportera annons",
-   "reportAdvertText": "Beskriv vad det var som fick dej att rapportera annonsen"
+   "reportAdvertText": "Beskriv vad det var som fick dej att rapportera annonsen",
+   "mailSent": "Rapporteringen av annonsen har blivit skickad, tack så mycket. Vi kommer ta en titt på det så fort som möjligt",
+   "mailError": "Vi lyckades inte skicka rapporteringen, försök igen senare"
 }

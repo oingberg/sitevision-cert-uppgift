@@ -10,7 +10,8 @@ define(function(require) {
       templateAddAdverts = require('/template/addAdvert'),
       templateSuccessAdvert = require('/template/addAdvertSuccess'),
       templateEditAdvert = require('/template/editAdvert'),
-      templateEditAdvertSuccess = require('/template/editAdvertSuccess');
+      templateEditAdvertSuccess = require('/template/editAdvertSuccess'),
+      templateReportSent = require('/template/reportSent');
 
    return Component.extend({
 
@@ -27,6 +28,8 @@ define(function(require) {
             return templateEditAdvert;
          } else if (this.state.route === '/editAdvertSuccess') {
             return templateEditAdvertSuccess;
+         } else if (this.state.route === '/reportSent') {
+            return templateReportSent;
          }
 
          return template;

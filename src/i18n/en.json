@@ -31,5 +31,7 @@
    "price": "Price",
    "SEK": "SEK",
    "reportAdvert": "Report advert",
-   "reportAdvertText": "Describe why you want to report this advert"
+   "reportAdvertText": "Describe why you want to report this advert",
+   "mailSent": "The advert have been reported, thank you. We will take a look at the report as soon as possible",
+   "mailError": "We could not send the report of the advert, please try again later"
 }

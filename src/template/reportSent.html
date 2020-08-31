@@ -1,0 +1,6 @@
+<% if (mailSentStatus) { %>
+    <h4><%- i18n('mailSent') %></h4>
+<% } else { %>
+    <h4><%- i18n('mailError') %></h4>
+<% } %>
+<a class="env-button" href="<%= getUrl('/') %>"><%- i18n('backToAllAdverts') %></a>
