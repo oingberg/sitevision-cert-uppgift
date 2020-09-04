@@ -24,7 +24,7 @@
 
       standardImageObj = standardImage;
    };
-
+   
    const user = portletContextUtil.getCurrentUser();
    const userId = propertyUtil.getString(user, 'jcr:uuid');
 
@@ -58,6 +58,7 @@
          .setTextMessage(`
             Beskriving på varför annons blev rapporterad:
             ${description}
+
             Annonsinformation:
             Annonsid: ${advert.dsid}
             Titel: ${advert.title}
@@ -73,10 +74,10 @@
          .build();
 
       if (mail.send()) {
-         res.render('/reportSent', { mailSentStatus: true });
+         res.json({ mailSentStatus: true });
       } else {
          logUtil.error('Could not send report mail');
-         res.render('/reportSent', { mailSentStatus: false });
+         res.json({ mailSentStatus: false });
       }
    });
 

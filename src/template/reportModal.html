@@ -13,7 +13,7 @@
                     <%- i18n('reportAdvert') %>
                 </h6>
             </div>
-            <form method="post" action="<%= getUrl('/reportAdvert', { dsid: advertDsid }) %>">
+            <div class="report-wrapper">
                 <div class="env-modal-dialog__body">
                     <p class="env-text">
                         <%- i18n('reportAdvertText') %>
@@ -21,14 +21,46 @@
                     <textarea class="env-form-input" id="description" name="description" rows="6" required></textarea>
                 </div>
                 <div class="env-modal-dialog__footer">
-                    <input class="env-button env-button--danger" type="submit" value="<%- i18n('reportAdvert') %>" />
+                    <input
+                        data-report-button
+                        class="env-button env-button--danger"
+                        type="button"
+                        value="<%- i18n('reportAdvert') %>" />
                     <button
                         data-modal-dialog-dismiss
                         class="env-button env-button--link">
                             <%- i18n('cancel') %>
                     </button>
                 </div>
-            </form>
+            </div>
+            <div class="report-success">
+                <div class="env-modal-dialog__body">
+                    <p class="env-text">
+                        <%- i18n('mailSent') %>
+                    </p>
+                </div>
+                <div class="env-modal-dialog__footer">
+                    <button
+                        data-modal-dialog-dismiss
+                        class="env-button">
+                            <%- i18n('back') %>
+                    </button>
+                </div>
+            </div>
+            <div class="report-fail">
+                <div class="env-modal-dialog__body">
+                    <p class="env-text">
+                        <%- i18n('mailSent') %>
+                    </p>
+                </div>
+                <div class="env-modal-dialog__footer">
+                    <button
+                        data-modal-dialog-dismiss
+                        class="env-button">
+                            <%- i18n('back') %>
+                    </button>
+                </div>
+            </div>
         </section>
     </div>
 </div>

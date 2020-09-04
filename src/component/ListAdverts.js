@@ -12,9 +12,6 @@ define(function(require) {
 
         filterState: function(state) {
             return _.extend({}, {
-                user: {
-                    id: state.user.id
-                },
                 adverts: state.adverts,
                 standardImage: state.standardImage
             });

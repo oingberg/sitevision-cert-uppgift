@@ -1,0 +1,20 @@
+<div class="env-embedded ws-advertising__list__item">
+    <a href="<%= getUrl('/advert', { dsid: dsid }) %>">
+        <div class="env-embedded__img-container">
+            <% if (standardImage) { %>
+                <img
+                    class="env-embedded__img"
+                    alt="<%- standardImage.alt %>"
+                    src="<%- standardImage.src %>"
+                />
+            <% } %>
+        </div>
+        <div class="env-embedded__block">
+            <h4 class="env-text"><%- title %></h4>
+            <p class="env-text env-text--muted env-embedded__text">
+                <%- shortDescription %>
+            </p>
+            <p class="env-text env-text--muted env-embedded__text"><%- price %> <%- i18n('SEK') %></p>
+        </div>
+    </a>
+</div>
