@@ -12,6 +12,7 @@ define(function(require) {
 
         filterState: function(state) {
             return _.extend({}, {
+                user: state.user,
                 adverts: state.adverts,
                 standardImage: state.standardImage
             });
